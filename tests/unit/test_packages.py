@@ -6,7 +6,7 @@ from __future__ import annotations
 def test_core_version() -> None:
     from nornweave_core import __version__
 
-    assert __version__ == "0.0.1"
+    assert __version__ == "0.0.2"
 
 
 def test_storage_version() -> None:

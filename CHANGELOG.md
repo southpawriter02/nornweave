@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2026-02-17
+
+### Added
+
+- Implemented canonical domain model in `nornweave-core` (42 public types).
+- Typed identifiers: `QueryId`, `DomainId`, `AgentId`, `DocumentId`, `ChunkId`, `TraceId`.
+- Enumerations: `DomainType`, `AgentStatus`, `ConflictStrategy`, `ChunkingStrategy`, `IngestStatus`.
+- Value objects: `RelevanceScore`, `EmbeddingVector`, `SourceCitation`, `DomainSignal`, `CoverageGap`, `TokenBudget`.
+- Core entities: `Document`, `Chunk`, `DomainDescriptor`, `AgentRegistration`.
+- Request models: `RecallRequest`, `IngestRequest`, `QueryRequest`, `FuseRequest`, `AgentRegisterRequest`, `HeartbeatRequest`.
+- Response models: `RecallItem`, `ConflictRecord`, `RecallResponse`, `RoutingPlan`, `RoutingTarget`, `DocumentIngestStatus`, `IngestResult`, `FusionResult`, `HealthStatus`, `ErrorDetail`, `ErrorResponse`, `AgentListResponse`, `HeartbeatResponse`.
+- Event models: `IngestionEvent`, `AgentLifecycleEvent`.
+- JSON Schema export tests for every model (`model_json_schema()`).
+- 153 unit tests with 100% coverage on `nornweave-core`.
+
 ## [0.0.1] - 2026-02-17
 
 ### Added
@@ -19,5 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `docker-compose.yaml` with pgvector (pg16) and Kafka (KRaft mode, 4 topics).
 - Added `.gitignore` for Python monorepo.
 
-[Unreleased]: https://github.com/southpawriter02/nornweave/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/southpawriter02/nornweave/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/southpawriter02/nornweave/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/southpawriter02/nornweave/releases/tag/v0.0.1
