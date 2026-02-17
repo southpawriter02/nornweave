@@ -1,0 +1,103 @@
+[project]
+name = "nornweave"
+version = "0.0.1"
+description = "Collaborative Recall Mesh — multi-agent distributed memory architecture"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.12"
+dependencies = [
+    "nornweave-core",
+    "nornweave-storage",
+    "nornweave-testing",
+    "nornweave-router",
+    "nornweave-fusion",
+    "nornweave-memory-agent",
+    "nornweave-registry",
+]
+
+[tool.uv.workspace]
+members = [
+    "libs/nornweave-core",
+    "libs/nornweave-storage",
+    "libs/nornweave-testing",
+    "services/router",
+    "services/fusion",
+    "services/memory-agent",
+    "services/registry",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9",
+    "mypy>=1.14",
+    "pre-commit>=4.1",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.25",
+    "pytest-cov>=6.0",
+    "pytest-mock>=3.14",
+]
+
+[tool.uv.sources]
+nornweave-core = { workspace = true }
+nornweave-storage = { workspace = true }
+nornweave-testing = { workspace = true }
+nornweave-router = { workspace = true }
+nornweave-fusion = { workspace = true }
+nornweave-memory-agent = { workspace = true }
+nornweave-registry = { workspace = true }
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = [
+    "libs/nornweave-core/src",
+    "libs/nornweave-storage/src",
+    "libs/nornweave-testing/src",
+    "services/router/src",
+    "services/fusion/src",
+    "services/memory-agent/src",
+    "services/registry/src",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "SIM", "TCH"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "nornweave_core",
+    "nornweave_storage",
+    "nornweave_testing",
+    "nornweave_router",
+    "nornweave_fusion",
+    "nornweave_memory",
+    "nornweave_registry",
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = [
+    "nornweave_router.*",
+    "nornweave_fusion.*",
+    "nornweave_memory.*",
+    "nornweave_registry.*",
+]
+strict = false
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-ra --strict-markers"
+markers = [
+    "unit: Unit tests (no external dependencies)",
+    "integration: Integration tests (require Docker services)",
+    "e2e: End-to-end tests (require full mesh)",
+]
